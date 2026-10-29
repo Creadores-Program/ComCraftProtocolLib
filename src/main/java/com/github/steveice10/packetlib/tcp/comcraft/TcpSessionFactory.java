@@ -1,4 +1,4 @@
-package com.github.steveice10.packetlib.tcp.classic;
+package com.github.steveice10.packetlib.tcp.comcraft;
 
 import com.github.steveice10.packetlib.Client;
 import com.github.steveice10.packetlib.ConnectionListener;
