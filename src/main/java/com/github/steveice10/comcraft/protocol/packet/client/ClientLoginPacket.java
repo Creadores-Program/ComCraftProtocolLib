@@ -1,6 +1,7 @@
 package com.github.steveice10.comcraft.protocol.packet.client;
 
 import com.github.steveice10.comcraft.protocol.ComcraftConstants;
+import com.github.steveice10.comcraft.protocol.packet.ComcraftPacketUtil;
 import com.github.steveice10.packetlib.io.NetInput;
 import com.github.steveice10.packetlib.io.NetOutput;
 import com.github.steveice10.packetlib.packet.Packet;
@@ -42,8 +43,9 @@ public class ClientLoginPacket implements Packet {
     @Override
     public void read(NetInput in) throws IOException {
         this.uniqueId = in.readInt();
-        //this.username = in.readString();
+        this.username = ComcraftPacketUtil.readString(in);
         this.serverVersion = in.readShort();
         this.apiVersion = in.readShort();
     }
+    //write
 }
