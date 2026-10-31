@@ -18,10 +18,10 @@ public class ClientLoginPacket implements Packet {
     private ClientLoginPacket(){}
 
     public ClientLoginPacket(int uniqueId, String username){
-      this.uniqueId = uniqueId;
-      this.username = username;
-      this.serverVersion = ComcraftConstants.SERVER_VERSION;
-      this.apiVersion = ComcraftConstants.API_VERSION;
+        this.uniqueId = uniqueId;
+        this.username = username;
+        this.serverVersion = ComcraftConstants.SERVER_VERSION;
+        this.apiVersion = ComcraftConstants.API_VERSION;
     }
 
     public int getUniqueId(){

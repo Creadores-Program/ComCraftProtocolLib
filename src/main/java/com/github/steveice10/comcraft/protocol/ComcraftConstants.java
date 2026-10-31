@@ -14,6 +14,11 @@ public class ComcraftConstants {
      */
     public static final int API_VERSION = 6;
 
+    /** 
+     * Current world version.
+    */
+    public static final int WORLD_VERSION = 5;
+
     /**
      * Flag key for a session's player username.
      * <p>
