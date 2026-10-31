@@ -47,5 +47,15 @@ public class ClientLoginPacket implements Packet {
         this.serverVersion = in.readShort();
         this.apiVersion = in.readShort();
     }
-    //write
+    @Override
+    public void write(NetOutput out) throws IOException {
+        out.writeInt(this.uniqueId);
+        ComcraftPacketUtil.writeString(out, this.username);
+        out.writeShort(this.serverVersion);
+        out.writeShort(this.apiVersion);
+    }
+    @Override
+    public boolean isPriority() {
+        return false;
+    }
 }
