@@ -77,13 +77,13 @@ public class ServerPlayerDataPacket implements Packet {
         this.action = ActionType.fromId(in.readUnsignedByte());
         this.playerId = in.readInt();
         switch(this.action){
-            case ActionType.JOIN:
-            case ActionType.MOVE:
+            case JOIN:
+            case MOVE:
                 this.x = in.readFloat();
                 this.y = in.readFloat();
                 this.z = in.readFloat();
                 break;
-            case ActionType.INVENTORY:
+            case INVENTORY:
                 this.itemIndex = in.readByte();
                 this.item = new Slot((int) in.readShort(), (int) in.readByte());
                 break;
@@ -95,13 +95,13 @@ public class ServerPlayerDataPacket implements Packet {
         out.writeByte(this.action.getId());
         out.writeInt(this.playerId);
         switch(this.action){
-            case ActionType.JOIN:
-            case ActionType.MOVE:
+            case JOIN:
+            case MOVE:
                 out.writeFloat(this.x);
                 out.writeFloat(this.y);
                 out.writeFloat(this.z);
                 break;
-            case ActionType.INVENTORY:
+            case INVENTORY:
                 out.writeByte(this.itemIndex);
                 out.writeShort(this.item.itemId);
                 out.writeByte(this.item.stackSize);
