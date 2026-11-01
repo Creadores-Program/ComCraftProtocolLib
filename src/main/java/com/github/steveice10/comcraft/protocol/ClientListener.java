@@ -1,18 +1,18 @@
-package com.github.steveice10.mc.classic.protocol;
+package com.github.steveice10.comcraft.protocol;
 
-import com.github.steveice10.mc.classic.protocol.packet.client.ClientIdentificationPacket;
-import com.github.steveice10.mc.classic.protocol.packet.server.ServerDisconnectPacket;
+import com.github.steveice10.comcraft.protocol.packet.client.ClientLoginPacket;
+import com.github.steveice10.comcraft.protocol.packet.server.ServerDisconnectPacket;
 import com.github.steveice10.packetlib.event.session.ConnectedEvent;
 import com.github.steveice10.packetlib.event.session.PacketReceivedEvent;
 import com.github.steveice10.packetlib.event.session.SessionAdapter;
 
 /**
- * Listener used on Minecraft Classic client sessions.
+ * Listener used on Comcraft client sessions.
  */
 public class ClientListener extends SessionAdapter {
     @Override
     public void connected(ConnectedEvent event) {
-        event.getSession().send(new ClientIdentificationPacket(event.getSession().<String>getFlag(ClassicConstants.USERNAME_KEY), event.getSession().<String>getFlag(ClassicConstants.VERIFICATION_KEY), event.getSession().<Boolean>getFlag(ClassicConstants.ISCPE, false)));
+        event.getSession().send(new ClientLoginPacket(event.getSession().<int>getFlag(ComcraftConstants.UNIQUEID_KEY), event.getSession().<String>getFlag(ComcraftConstants.USERNAME_KEY)));
     }
 
     @Override
