@@ -3,18 +3,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.steveice10</groupId>
-    <artifactId>classicprotocollib</artifactId>
-    <version>0.30-5-SNAPSHOT</version>
+    <artifactId>comcraftprotocollib</artifactId>
+    <version>0.6-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>ClassicProtocolLib</name>
-    <description>A library for communicating with a Minecraft Classic ClassiCube client or server.</description>
+    <name>ComcraftProtocolLib</name>
+    <description>A library for communicating with a Comcraft client or server.</description>
     <url>http://github.com/Steveice10/ClassicProtocolLib/</url>
 
     <scm>
-        <connection>scm:git:git@github.com:Steveice10/ClassicProtocolLib.git</connection>
-        <developerConnection>scm:git:git@github.com:Steveice10/ClassicProtocolLib.git</developerConnection>
-        <url>git@github.com:Steveice10/ClassicProtocolLib/</url>
+        <connection>scm:git:git@github.com:Creadores-Program/ComcraftProtocolLib.git</connection>
+        <developerConnection>scm:git:git@github.com: Creadores-Program/ComcraftProtocolLib.git</developerConnection>
+        <url>git@github.com:Creadores-Program/ComcraftProtocolLib/</url>
     </scm>
 
     <properties>
@@ -37,11 +37,15 @@
             <name>Steveice10</name>
             <email>Steveice10@gmail.com</email>
         </developer>
+        <developer>
+            <id>trollhunters501</id>
+            <name>Trollhunters501</name>
+        </developer>
     </developers>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/Steveice10/ClassicProtocolLib/issues</url>
+        <url>https://github.com/Creadores-Program/ComcraftProtocolLib/issues</url>
     </issueManagement>
 
     <repositories>
