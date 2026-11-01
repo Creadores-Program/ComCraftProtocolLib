@@ -12,7 +12,7 @@ import com.github.steveice10.packetlib.event.session.SessionAdapter;
 public class ClientListener extends SessionAdapter {
     @Override
     public void connected(ConnectedEvent event) {
-        event.getSession().send(new ClientLoginPacket(event.getSession().<int>getFlag(ComcraftConstants.UNIQUEID_KEY), event.getSession().<String>getFlag(ComcraftConstants.USERNAME_KEY)));
+        event.getSession().send(new ClientLoginPacket(event.getSession().<Integer>getFlag(ComcraftConstants.UNIQUEID_KEY), event.getSession().<String>getFlag(ComcraftConstants.USERNAME_KEY)));
     }
 
     @Override
