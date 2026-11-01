@@ -3,6 +3,7 @@ package com.github.steveice10.comcraft.protocol.packet;
 import com.github.steveice10.packetlib.io.NetInput;
 import com.github.steveice10.packetlib.io.NetOutput;
 
+import java.nio.charset.StandardCharsets;
 import java.io.IOException;
 
 /**
@@ -21,7 +22,7 @@ public class ComcraftPacketUtil {
      */
     public static String readString(NetInput in) throws IOException {
         int len = in.readUnsignedShort();
-        return new String(in.readBytes(len), "UTF-8");
+        return new String(in.readBytes(len), StandardCharsets.UTF_8);
     }
 
     /**
@@ -32,7 +33,7 @@ public class ComcraftPacketUtil {
      * @throws IOException If an I/O error occurs.
      */
     public static void writeString(NetOutput out, String str) throws IOException {
-        byte[] strB = str.getBytes("UTF-8");
+        byte[] strB = str.getBytes(StandardCharsets.UTF_8);
         out.writeShort(strB.length);
         out.writeBytes(strB);
     }
