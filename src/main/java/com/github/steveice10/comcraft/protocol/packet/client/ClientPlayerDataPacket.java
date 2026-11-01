@@ -8,7 +8,7 @@ import com.github.steveice10.packetlib.packet.Packet;
 
 import java.io.IOException;
 
-public class CLientPlayerDataPacket implements Packet {
+public class ClientPlayerDataPacket implements Packet {
     private ActionType action;
     private int playerId;
     private float x;
