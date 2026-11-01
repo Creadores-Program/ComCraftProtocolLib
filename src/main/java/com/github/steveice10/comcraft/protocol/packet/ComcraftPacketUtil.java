@@ -32,7 +32,7 @@ public class ComcraftPacketUtil {
      * @throws IOException If an I/O error occurs.
      */
     public static void writeString(NetOutput out, String str) throws IOException {
-        byte[] srtB = str.getBytes("UTF-8");
+        byte[] strB = str.getBytes("UTF-8");
         out.writeShort(strB.length);
         out.writeBytes(strB);
     }
