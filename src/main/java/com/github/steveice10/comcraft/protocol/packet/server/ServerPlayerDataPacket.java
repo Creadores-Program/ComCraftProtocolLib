@@ -73,10 +73,41 @@ public class ServerPlayerDataPacket implements Packet {
     }
 
     @Override
-    public void read(NetInput in) throws IOException {}
+    public void read(NetInput in) throws IOException {
+        this.action = ActionType.fromId(in.readUnsignedByte());
+        this.playerId = in.readInt();
+        switch(this.action){
+            case ActionType.JOIN:
+            case ActionType.MOVE:
+                this.x = in.readFloat();
+                this.y = in.readFloat();
+                this.z = in.readFloat();
+                break;
+            case ActionType.INVENTORY:
+                this.itemIndex = in.readByte();
+                this.item = new Slot((int) in.readShort(), (int) in.readByte());
+                break;
+        }
+    }
 
     @Override
-    public void write(NetOutput out) throws IOException {}
+    public void write(NetOutput out) throws IOException {
+        out.writeByte(this.action.getId());
+        out.writeInt(this.playerId);
+        switch(this.action){
+            case ActionType.JOIN:
+            case ActionType.MOVE:
+                out.writeFloat(this.x);
+                out.writeFloat(this.y);
+                out.writeFloat(this.z);
+                break;
+            case ActionType.INVENTORY:
+                out.writeByte(this.itemIndex);
+                out.writeShort(this.item.itemId);
+                out.writeByte(this.item.stackSize);
+                break;
+        }
+    }
 
     @Override
     public boolean isPriority() {
