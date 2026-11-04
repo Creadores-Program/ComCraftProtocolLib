@@ -32,9 +32,8 @@ public class ClientPlayerDataPacket implements Packet {
         this.z = z;
     }
 
-    public ClientPlayerDataPacket(int playerId, int itemIndex, Slot item){
+    public ClientPlayerDataPacket(int itemIndex, Slot item){
         this.action = ActionType.INVENTORY;
-        this.playerId = playerId;
         this.itemIndex = itemIndex;
         this.item = item;
     }
@@ -75,13 +74,16 @@ public class ClientPlayerDataPacket implements Packet {
     @Override
     public void read(NetInput in) throws IOException {
         this.action = ActionType.fromId(in.readUnsignedByte());
-        this.playerId = in.readInt();
         switch(this.action){
             case JOIN:
             case MOVE:
+                this.playerId = in.readInt();
                 this.x = in.readFloat();
                 this.y = in.readFloat();
                 this.z = in.readFloat();
+                break;
+            case QUIT:
+                this.playerId = in.readInt();
                 break;
             case INVENTORY:
                 this.itemIndex = in.readByte();
@@ -93,13 +95,16 @@ public class ClientPlayerDataPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         out.writeByte(this.action.getId());
-        out.writeInt(this.playerId);
         switch(this.action){
             case JOIN:
             case MOVE:
+                out.writeInt(this.playerId);
                 out.writeFloat(this.x);
                 out.writeFloat(this.y);
                 out.writeFloat(this.z);
+                break;
+            case QUIT:
+                out.writeInt(this.playerId);
                 break;
             case INVENTORY:
                 out.writeByte(this.itemIndex);
