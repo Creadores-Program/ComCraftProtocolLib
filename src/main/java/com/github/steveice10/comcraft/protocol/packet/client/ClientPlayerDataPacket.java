@@ -10,31 +10,46 @@ import java.io.IOException;
 
 public class ClientPlayerDataPacket implements Packet {
     private ActionType action;
+    private int playerId;
     private float x;
     private float y;
     private float z;
     private int itemIndex;
     private Slot item;
-    
-    public ClientPlayerDataPacket(float x, float y, float z){
-        this.action = ActionType.MOVE;
+
+    @SuppressWarnings("unused")
+    private ClientPlayerDataPacket(){}
+
+    public ClientPlayerDataPacket(boolean join, int playerId, float x, float y, float z){
+        if(join){
+            this.action = ActionType.JOIN;
+        }else{
+            this.action = ActionType.MOVE;
+        }
+        this.playerId = playerId;
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
-    public ClientPlayerDataPacket(int itemIndex, Slot item){
+    public ClientPlayerDataPacket(int playerId, int itemIndex, Slot item){
         this.action = ActionType.INVENTORY;
+        this.playerId = playerId;
         this.itemIndex = itemIndex;
         this.item = item;
     }
 
-    public ClientPlayerDataPacket(){
+    public ClientPlayerDataPacket(int playerId){
         this.action = ActionType.QUIT;
+        this.playerId = playerId;
     }
 
     public ActionType getAction(){
         return this.action;
+    }
+
+    public int getPlayerId(){
+        return this.playerId;
     }
 
     public float getX(){
@@ -60,6 +75,7 @@ public class ClientPlayerDataPacket implements Packet {
     @Override
     public void read(NetInput in) throws IOException {
         this.action = ActionType.fromId(in.readUnsignedByte());
+        this.playerId = in.readInt();
         switch(this.action){
             case JOIN:
             case MOVE:
@@ -77,6 +93,7 @@ public class ClientPlayerDataPacket implements Packet {
     @Override
     public void write(NetOutput out) throws IOException {
         out.writeByte(this.action.getId());
+        out.writeInt(this.playerId);
         switch(this.action){
             case JOIN:
             case MOVE:
