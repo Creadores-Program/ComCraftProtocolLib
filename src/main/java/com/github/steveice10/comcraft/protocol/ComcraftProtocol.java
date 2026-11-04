@@ -61,6 +61,7 @@ public class ComcraftProtocol extends PacketProtocol {
 		this.registerIncoming(0xFF, ServerDisconnectPacket.class);
 
 		this.registerOutgoing(0x01, ClientLoginPacket.class);
+		this.registerOutgoing(0x04, ClientWorldInfoPacket.class);
 		this.registerOutgoing(0x06, ClientPlayerDataPacket.class);
 		this.registerOutgoing(0x07, ClientChunkDataPacket.class);
 		this.registerOutgoing(0x0A, ClientBlockChangePacket.class);
@@ -73,6 +74,7 @@ public class ComcraftProtocol extends PacketProtocol {
 	@Override
 	public void newServerSession(Server server, Session session) {
 		this.registerIncoming(0x01, ClientLoginPacket.class);
+		this.registerIncoming(0x04, ClientWorldInfoPacket.class);
 		this.registerIncoming(0x06, ClientPlayerDataPacket.class);
 		this.registerIncoming(0x07, ClientChunkDataPacket.class);
 		this.registerIncoming(0x0A, ClientBlockChangePacket.class);
